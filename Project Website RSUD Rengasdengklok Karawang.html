@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RSUD Rengasdengklok – Rumah Sakit Umum Daerah modern di Karawang. Layanan kesehatan terpadu, jadwal dokter spesialis, donor darah, dan MCU Haji." />
+  <title>RSUD Rengasdengklok | Rumah Sakit Umum Daerah Karawang</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal:        #0d7377;
+      --teal-dark:   #095c60;
+      --teal-light:  #14a085;
+      --teal-pale:   #e6f4f4;
+      --teal-glass:  rgba(13,115,119,0.12);
+      --white:       #ffffff;
+      --off-white:   #f8fbfb;
+      --gray-100:    #f1f5f5;
+      --gray-200:    #e2ecec;
+      --gray-400:    #8aacac;
+      --gray-600:    #4a6b6b;
+      --gray-800:    #1e3535;
+      --red:         #c0392b;
+      --red-light:   #fdecea;
+      --amber:       #d97706;
+      --amber-light: #fffbeb;
+      --green:       #16a34a;
+      --green-light: #f0fdf4;
+      --font:        'Segoe UI', system-ui, -apple-system, sans-serif;
+      --radius:      10px;
+      --shadow-sm:   0 1px 4px rgba(13,115,119,0.10);
+      --shadow-md:   0 4px 16px rgba(13,115,119,0.14);
+      --shadow-lg:   0 8px 32px rgba(13,115,119,0.18);
+      --transition:  0.22s ease;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font); background: var(--off-white); color: var(--gray-800); line-height: 1.65; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { color: var(--teal-dark); }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: var(--font); }
+    h1,h2,h3,h4 { line-height: 1.3; }
+
+    /* ===== SKIP LINK (Accessibility) ===== */
+    .skip-link {
+      position: absolute; top: -50px; left: 8px; z-index: 9999;
+      background: var(--teal); color: var(--white); padding: 8px 16px;
+      border-radius: var(--radius); font-size: 0.875rem; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 8px; }
+
+    /* ===== DISCLAIMER BANNER ===== */
+    .disclaimer-banner {
+      background: var(--amber-light); border-bottom: 2px solid var(--amber);
+      padding: 8px 20px; text-align: center; font-size: 0.8rem; color: #92400e;
+    }
+    .disclaimer-banner strong { color: #78350f; }
+
+    /* ===== HEADER / NAVBAR ===== */
+    header {
+      background: var(--white); border-bottom: 3px solid var(--teal);
+      position: sticky; top: 0; z-index: 900;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; height: 70px; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .logo-icon {
+      width: 48px; height: 48px; background: var(--teal);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-icon svg { width: 28px; height: 28px; fill: var(--white); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text span:first-child { font-size: 1rem; font-weight: 700; color: var(--teal); line-height: 1.1; }
+    .logo-text span:last-child  { font-size: 0.72rem; color: var(--gray-600); }
+    nav { display: flex; align-items: center; gap: 4px; }
+    nav a {
+      padding: 6px 12px; border-radius: 6px; font-size: 0.875rem;
+      font-weight: 500; color: var(--gray-800); transition: background var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active { background: var(--teal-pale); color: var(--teal); }
+    .btn-emergency {
+      background: var(--red); color: var(--white); border: none;
+      padding: 9px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; gap: 7px; flex-shrink: 0;
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+    .btn-emergency:hover { background: #a93226; transform: scale(1.03); }
+    .btn-emergency svg { width: 16px; height: 16px; fill: var(--white); }
+    .hamburger {
+      display: none; background: none; border: 2px solid var(--gray-200);
+      border-radius: 6px; padding: 6px 8px; flex-direction: column; gap: 4px;
+    }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--gray-800); border-radius: 2px; }
+    .mobile-nav {
+      display: none; flex-direction: column; background: var(--white);
+      border-top: 1px solid var(--gray-200); padding: 12px 20px 16px;
+    }
+    .mobile-nav a {
+      padding: 10px 12px; border-radius: 6px; font-size: 0.9rem; font-weight: 500;
+      color: var(--gray-800); transition: background var(--transition);
+    }
+    .mobile-nav a:hover { background: var(--teal-pale); color: var(--teal); }
+    .mobile-nav .btn-emergency { margin-top: 8px; justify-content: center; }
+    @media (max-width: 900px) {
+      nav, header .btn-emergency { display: none; }
+      .hamburger { display: flex; }
+    }
+    .mobile-nav.open { display: flex; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 50%, var(--teal-light) 100%);
+      padding: 72px 20px 80px; text-align: center; color: var(--white); position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; max-width: 720px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.18); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.35); border-radius: 20px;
+      padding: 4px 16px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;
+      margin-bottom: 18px; text-transform: uppercase;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; margin-bottom: 14px; }
+    .hero p   { font-size: clamp(0.95rem, 2.2vw, 1.1rem); opacity: 0.9; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--white); color: var(--teal); padding: 12px 28px;
+      border-radius: 8px; font-weight: 700; font-size: 0.95rem; border: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+    .btn-outline {
+      background: transparent; color: var(--white); padding: 12px 28px;
+      border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+      border: 2px solid rgba(255,255,255,0.7);
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 32px; margin-top: 44px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .stat-num { font-size: 1.9rem; font-weight: 800; line-height: 1; }
+    .stat-item .stat-lbl { font-size: 0.78rem; opacity: 0.8; margin-top: 2px; }
+
+    /* ===== SECTION COMMON ===== */
+    section { padding: 64px 20px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 44px; }
+    .section-tag {
+      display: inline-block; background: var(--teal-pale); color: var(--teal);
+      border-radius: 20px; padding: 4px 14px; font-size: 0.76rem; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .section-header h2 { font-size: clamp(1.4rem, 3.5vw, 2rem); color: var(--gray-800); margin-bottom: 10px; }
+    .section-header p  { color: var(--gray-600); font-size: 0.95rem; max-width: 540px; margin: 0 auto; }
+    .divider { width: 48px; height: 4px; background: var(--teal); border-radius: 2px; margin: 14px auto 0; }
+
+    /* ===== LAYANAN CARDS ===== */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px;
+    }
+    .service-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px 24px;
+      border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .service-icon {
+      width: 52px; height: 52px; background: var(--teal-pale); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .service-icon svg { width: 26px; height: 26px; fill: var(--teal); }
+    .service-card h3 { font-size: 1rem; font-weight: 700; color: var(--gray-800); margin-bottom: 8px; }
+    .service-card p  { font-size: 0.875rem; color: var(--gray-600); line-height: 1.6; }
+    .service-card .badge-24 {
+      display: inline-block; background: var(--red-light); color: var(--red);
+      font-size: 0.7rem; font-weight: 700; border-radius: 4px; padding: 2px 7px; margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ===== VISI MISI ===== */
+    #visi-misi { background: var(--teal-pale); }
+    .visi-misi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 700px) { .visi-misi-grid { grid-template-columns: 1fr; } }
+    .vm-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      border-left: 5px solid var(--teal); box-shadow: var(--shadow-sm);
+    }
+    .vm-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--teal); margin-bottom: 12px; }
+    .vm-card p, .vm-card li { font-size: 0.9rem; color: var(--gray-800); line-height: 1.7; }
+    .vm-card ul { padding-left: 4px; }
+    .vm-card ul li { padding: 4px 0 4px 20px; position: relative; }
+    .vm-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+    /* ===== DONOR DARAH ===== */
+    #donor-darah { background: var(--white); }
+    .donor-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    @media (max-width: 800px) { .donor-layout { grid-template-columns: 1fr; } }
+    .blood-stock-widget {
+      background: var(--gray-800); border-radius: 14px; padding: 28px; color: var(--white);
+    }
+    .blood-stock-widget h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .bsw-subtitle { font-size: 0.78rem; opacity: 0.7; margin-bottom: 22px; }
+    .bsw-timestamp { font-size: 0.72rem; opacity: 0.55; margin-top: 16px; }
+    .blood-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .blood-card {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; padding: 16px 14px; text-align: center;
+      backdrop-filter: blur(4px);
+    }
+    .blood-type { font-size: 2rem; font-weight: 900; line-height: 1; }
+    .blood-label { font-size: 0.68rem; opacity: 0.65; margin: 4px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+    .blood-units { font-size: 1.1rem; font-weight: 700; }
+    .blood-status {
+      display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 20px; margin-top: 6px; letter-spacing: 0.3px;
+    }
+    .status-aman    { background: rgba(22,163,74,0.25);  color: #4ade80; }
+    .status-menipis { background: rgba(217,119,6,0.25);  color: #fbbf24; }
+    .status-kritis  { background: rgba(220,38,38,0.25);  color: #f87171; }
+    .donor-info { display: flex; flex-direction: column; gap: 18px; }
+    .donor-schedule-card {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius);
+      padding: 22px; box-shadow: var(--shadow-sm);
+    }
+    .donor-schedule-card h3 { font-size: 1rem; font-weight: 700; color: var(--teal); margin-bottom: 14px; }
+    .schedule-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .schedule-table th { background: var(--teal-pale); color: var(--teal); font-weight: 700; padding: 8px 12px; text-align: left; }
+    .schedule-table td { padding: 8px 12px; border-bottom: 1px solid var(--gray-100); color: var(--gray-800); }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .donate-cta {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: var(--radius); padding: 22px; color: var(--white); text-align: center;
+    }
+    .donate-cta h3 { font-weight: 700; margin-bottom: 8px; }
+    .donate-cta p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 14px; }
+    .btn-white {
+      background: var(--white); color: var(--teal); padding: 10px 24px;
+      border-radius: 7px; font-weight: 700; font-size: 0.875rem; border: none;
+      transition: transform var(--transition);
+    }
+    .btn-white:hover { transform: scale(1.03); }
+
+    /* ===== MCU HAJI ===== */
+    #mcu-haji { background: var(--off-white); }
+    .mcu-hero {
+      background: linear-gradient(135deg, #1a5276, #0d7377);
+      border-radius: 14px; padding: 36px 32px; color: var(--white);
+      margin-bottom: 32px; display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap;
+    }
+    .mcu-hero-text { flex: 1; min-width: 240px; }
+    .mcu-hero-text h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; }
+    .mcu-hero-text p  { font-size: 0.88rem; opacity: 0.9; line-height: 1.7; }
+    .mcu-reg-badge {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 10px; padding: 16px 20px; text-align: center; flex-shrink: 0;
+    }
+    .mcu-reg-badge .reg-label { font-size: 0.72rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.5px; }
+    .mcu-reg-badge .reg-num   { font-size: 0.95rem; font-weight: 800; margin-top: 4px; letter-spacing: 0.5px; }
+    .mcu-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 750px) { .mcu-columns { grid-template-columns: 1fr; } }
+    .mcu-card {
+      background: var(--white); border-radius: var(--radius); padding: 24px;
+      border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm);
+    }
+    .mcu-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--teal); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .mcu-card h4 svg { width: 18px; height: 18px; fill: var(--teal); flex-shrink: 0; }
+    .step-list { display: flex; flex-direction: column; gap: 12px; }
+    .step-item { display: flex; gap: 12px; align-items: flex-start; }
+    .step-num {
+      width: 26px; height: 26px; background: var(--teal); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .step-text { font-size: 0.875rem; color: var(--gray-800); line-height: 1.55; }
+    .doc-list li {
+      display: flex; align-items: flex-start; gap: 8px; padding: 6px 0;
+      font-size: 0.875rem; color: var(--gray-800); border-bottom: 1px dashed var(--gray-200);
+    }
+    .doc-list li:last-child { border-bottom: none; }
+    .doc-list li::before { content: '📄'; flex-shrink: 0; margin-top: 1px; }
+    .mcu-note {
+      background: var(--teal-pale); border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 24px;
+      font-size: 0.83rem; color: var(--gray-800);
+    }
+    .mcu-note strong { color: var(--teal); }
+
+    /* ===== JADWAL DOKTER ===== */
+    #jadwal-dokter { background: var(--white); }
+    .jadwal-filter {
+      background: var(--gray-100); border-radius: var(--radius); padding: 20px 24px;
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; align-items: flex-end;
+    }
+    .filter-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; }
+    .filter-group label { font-size: 0.8rem; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.4px; }
+    .filter-group select {
+      padding: 9px 12px; border: 1.5px solid var(--gray-200); border-radius: 7px;
+      font-size: 0.875rem; color: var(--gray-800); background: var(--white);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230d7377'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center;
+      cursor: pointer;
+    }
+    .filter-group select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,115,119,0.15); }
+    .btn-search {
+      background: var(--teal); color: var(--white); border: none; padding: 9px 24px;
+      border-radius: 7px; font-weight: 700; font-size: 0.875rem; height: 40px; align-self: flex-end;
+      transition: background var(--transition);
+    }
+    .btn-search:hover { background: var(--teal-dark); }
+    #jadwal-result { min-height: 80px; }
+    .jadwal-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .jadwal-table thead th { background: var(--teal); color: var(--white); padding: 12px 16px; text-align: left; font-weight: 600; }
+    .jadwal-table thead th:first-child { border-radius: 8px 0 0 0; }
+    .jadwal-table thead th:last-child  { border-radius: 0 8px 0 0; }
+    .jadwal-table tbody tr:nth-child(even) { background: var(--gray-100); }
+    .jadwal-table tbody td { padding: 10px 16px; border-bottom: 1px solid var(--gray-200); color: var(--gray-800); }
+    .jadwal-table tbody tr:hover td { background: var(--teal-pale); }
+    .poli-badge {
+      display: inline-block; background: var(--teal-pale); color: var(--teal);
+      border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; font-weight: 600;
+    }
+    .empty-state { text-align: center; padding: 32px; color: var(--gray-400); }
+    .empty-state svg { width: 40px; height: 40px; fill: var(--gray-400); margin: 0 auto 10px; }
+
+    /* ===== PENDAFTARAN ONLINE ===== */
+    #pendaftaran { background: var(--teal-pale); }
+    .reg-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 36px; }
+    @media (max-width: 800px) { .reg-layout { grid-template-columns: 1fr; } }
+    .reg-info { display: flex; flex-direction: column; gap: 18px; }
+    .reg-info-card {
+      background: var(--white); border-radius: var(--radius); padding: 22px;
+      box-shadow: var(--shadow-sm); border-left: 5px solid var(--teal);
+    }
+    .reg-info-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+    .reg-info-card ul li { font-size: 0.85rem; color: var(--gray-800); padding: 4px 0 4px 18px; position: relative; }
+    .reg-info-card ul li::before { content: '›'; position: absolute; left: 4px; color: var(--teal); font-weight: 700; }
+    .reg-form-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+    .reg-form-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--gray-800); margin-bottom: 22px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--gray-600); }
+    .form-group label .req { color: var(--red); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px 12px; border: 1.5px solid var(--gray-200); border-radius: 7px;
+      font-size: 0.875rem; font-family: var(--font); color: var(--gray-800); background: var(--white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,115,119,0.15);
+    }
+    .form-group input.error,
+    .form-group select.error,
+    .form-group textarea.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,57,43,0.12); }
+    .form-error-msg { font-size: 0.76rem; color: var(--red); margin-top: 2px; display: none; }
+    .form-error-msg.visible { display: block; }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .privacy-note {
+      background: var(--gray-100); border-radius: 6px; padding: 10px 14px;
+      font-size: 0.77rem; color: var(--gray-600); margin-top: 4px;
+    }
+    .privacy-note strong { color: var(--teal); }
+    .btn-register {
+      width: 100%; background: var(--teal); color: var(--white); border: none;
+      padding: 13px; border-radius: 8px; font-size: 0.95rem; font-weight: 700;
+      margin-top: 16px; transition: background var(--transition), transform var(--transition);
+    }
+    .btn-register:hover { background: var(--teal-dark); transform: translateY(-1px); }
+    .btn-register:disabled { background: var(--gray-400); transform: none; cursor: not-allowed; }
+    .form-success {
+      display: none; background: var(--green-light); border: 1.5px solid var(--green);
+      border-radius: 8px; padding: 18px; text-align: center; margin-top: 16px;
+    }
+    .form-success.visible { display: block; }
+    .form-success h4 { color: var(--green); font-size: 1rem; margin-bottom: 6px; }
+    .form-success p  { font-size: 0.85rem; color: var(--gray-800); }
+
+    /* ===== KONTAK ===== */
+    #kontak { background: var(--gray-800); color: var(--white); padding: 56px 20px; }
+    .kontak-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+    .kontak-card { }
+    .kontak-card h4 { font-size: 0.8rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+    .kontak-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+    .kontak-item svg { width: 16px; height: 16px; fill: var(--teal-light); flex-shrink: 0; margin-top: 2px; }
+    .kontak-item span { font-size: 0.875rem; color: rgba(255,255,255,0.82); line-height: 1.5; }
+    .kontak-item a { color: rgba(255,255,255,0.82); }
+    .kontak-item a:hover { color: var(--white); }
+    .kontak-hours p { font-size: 0.85rem; color: rgba(255,255,255,0.82); margin-bottom: 6px; }
+    .kontak-hours strong { color: var(--white); }
+    .emergency-box {
+      background: rgba(192,57,43,0.25); border: 1.5px solid rgba(192,57,43,0.5);
+      border-radius: 8px; padding: 14px 16px;
+    }
+    .emergency-box p { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .emergency-box a { font-size: 1.1rem; font-weight: 800; color: #ff6b6b; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f2424; color: rgba(255,255,255,0.55);
+      padding: 22px 20px; text-align: center; font-size: 0.78rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    footer p { margin-bottom: 4px; }
+    footer a { color: rgba(255,255,255,0.7); }
+    footer a:hover { color: var(--white); }
+    .reg-line { font-size: 0.72rem; opacity: 0.5; margin-top: 6px; }
+
+    /* ===== SCROLL TO TOP ===== */
+    #scrollTop {
+      position: fixed; bottom: 24px; right: 24px; z-index: 800;
+      width: 42px; height: 42px; background: var(--teal); color: var(--white);
+      border: none; border-radius: 50%; font-size: 1.2rem; display: none;
+      align-items: center; justify-content: center; box-shadow: var(--shadow-md);
+      transition: background var(--transition), opacity var(--transition);
+    }
+    #scrollTop.visible { display: flex; }
+    #scrollTop:hover { background: var(--teal-dark); }
+
+    /* ===== UTILITIES ===== */
+    .text-center { text-align: center; }
+    .mt-4  { margin-top: 16px; }
+    .mb-4  { margin-bottom: 16px; }
+    @media (max-width: 600px) {
+      section { padding: 44px 16px; }
+      .hero { padding: 52px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Skip Navigation (Accessibility) -->
+<a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+<!-- Disclaimer Banner -->
+<div class="disclaimer-banner" role="alert" aria-label="Peringatan medis">
+  ⚠️ <strong>Disclaimer Medis:</strong> Informasi pada website ini bersifat <strong>informatif</strong> dan <strong>tidak menggantikan</strong> pemeriksaan, diagnosis, atau penanganan medis langsung oleh tenaga kesehatan di IGD / Poliklinik RSUD Rengasdengklok.
+</div>
+
+<!-- ===== HEADER ===== -->
+<header role="banner">
+  <div class="nav-container">
+    <a href="#beranda" class="nav-logo" aria-label="RSUD Rengasdengklok – Halaman Utama">
+      <div class="logo-icon" aria-hidden="true">
+        <!-- Medical cross SVG -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span>RSUD Rengasdengklok</span>
+        <span>Kabupaten Karawang – Jawa Barat</span>
+      </div>
+    </a>
+
+    <nav role="navigation" aria-label="Navigasi utama">
+      <a href="#beranda" class="active">Beranda</a>
+      <a href="#layanan">Layanan Unggulan</a>
+      <a href="#jadwal-dokter">Jadwal Dokter</a>
+      <a href="#donor-darah">Donor Darah</a>
+      <a href="#mcu-haji">MCU Haji</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+
+    <a href="tel:+628119876543" class="btn-emergency" aria-label="Hubungi IGD Darurat">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+      </svg>
+      IGD Darurat
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Navigasi mobile">
+    <a href="#beranda">Beranda</a>
+    <a href="#layanan">Layanan Unggulan</a>
+    <a href="#jadwal-dokter">Jadwal Dokter</a>
+    <a href="#donor-darah">Donor Darah</a>
+    <a href="#mcu-haji">MCU Haji</a>
+    <a href="#kontak">Kontak</a>
+    <a href="tel:+628119876543" class="btn-emergency" style="text-decoration:none;margin-top:8px;">
+      🚨 IGD Darurat — +62 811-9876-5432
+    </a>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main id="main-content">
+
+  <!-- ===== HERO ===== -->
+  <section id="beranda" class="hero" aria-label="Selamat datang di RSUD Rengasdengklok">
+    <div class="hero-content">
+      <div class="hero-badge">Rumah Sakit Rujukan Modern Karawang</div>
+      <h1>Kesehatan Anda, Prioritas Utama Kami</h1>
+      <p>RSUD Rengasdengklok hadir dengan layanan medis terpadu, tenaga kesehatan profesional, dan fasilitas modern untuk melayani masyarakat Kabupaten Karawang dan sekitarnya.</p>
+      <div class="hero-actions">
+        <a href="#pendaftaran" class="btn-primary">Daftar Online</a>
+        <a href="#jadwal-dokter" class="btn-outline">Jadwal Dokter</a>
+      </div>
+      <div class="hero-stats" role="list" aria-label="Statistik rumah sakit">
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">24/7</div>
+          <div class="stat-lbl">Layanan IGD</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">20+</div>
+          <div class="stat-lbl">Spesialis</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">150+</div>
+          <div class="stat-lbl">Tempat Tidur</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">50K+</div>
+          <div class="stat-lbl">Pasien / Tahun</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VISI MISI ===== -->
+  <section id="visi-misi" aria-labelledby="vm-heading">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">Tentang Kami</span>
+        <h2 id="vm-heading">Visi &amp; Misi Kami</h2>
+        <div class="divider"></div>
+        <p>RSUD Rengasdengklok berkomitmen menjadi rumah sakit rujukan terdepan yang memberikan pelayanan kesehatan berkualitas tinggi bagi seluruh lapisan masyarakat.</p>
+      </div>
+      <div class="visi-misi-grid">
+        <div class="vm-card">
+          <h3>🎯 Visi</h3>
+          <p>Menjadi Rumah Sakit Umum Daerah rujukan modern yang unggul, terpercaya, dan humanis dalam pelayanan kesehatan komprehensif untuk mewujudkan masyarakat Kabupaten Karawang yang sehat dan sejahtera pada tahun 2030.</p>
+        </div>
+        <div class="vm-card">
+          <h3>📌 Misi</h3>
+          <ul>
+            <li>Memberikan pelayanan medis berstandar nasional dengan mengutamakan keselamatan dan kepuasan pasien.</li>
+            <li>Mengembangkan SDM kesehatan yang profesional, kompeten, dan berintegritas tinggi.</li>
+            <li>Menyediakan sarana dan prasarana medis modern yang memadai dan berteknologi mutakhir.</li>
+            <li>Meningkatkan tata kelola rumah sakit yang transparan, akuntabel, dan berbasis bukti.</li>
+            <li>Menjalin kemitraan strategis dengan institusi kesehatan nasional dan regional.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LAYANAN UNGGULAN ===== -->
+  <section id="layanan" aria-labelledby="layanan-heading">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">Layanan Unggulan</span>
+        <h2 id="layanan-heading">Fasilitas &amp; Layanan Medis</h2>
+        <div class="divider"></div>
+        <p>Berbagai layanan kesehatan komprehensif tersedia untuk memenuhi kebutuhan medis Anda dan keluarga.</p>
+      </div>
+      <div class="services-grid" role="list">
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          </div>
+          <h3>IGD (Instalasi Gawat Darurat) <span class="badge-24">24 Jam</span></h3>
+          <p>Penanganan kasus gawat darurat medis oleh tim dokter dan perawat berpengalaman dengan peralatan resusitasi lengkap.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+          </div>
+          <h3>Poliklinik Spesialis</h3>
+          <p>Tersedia 20+ poli spesialis: Penyakit Dalam, Anak, Bedah, Kandungan &amp; Kebidanan, Jantung, Ortopedi, Mata, THT, Saraf, dan lainnya.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/></svg>
+          </div>
+          <h3>Rawat Inap</h3>
+          <p>Lebih dari 150 tempat tidur rawat inap dengan kelas VIP, Kelas I, II, dan III. Ruang ICU/ICCU, HCU, dan ruang isolasi tersedia.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+          </div>
+          <h3>Laboratorium Klinik</h3>
+          <p>Pemeriksaan laboratorium lengkap: hematologi, kimia darah, urinalisis, mikrobiologi, parasitologi, dan pemeriksaan khusus lainnya.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 17.93V18h-2v1.93A8.001 8.001 0 014.07 13H6v-2H4.07A8.001 8.001 0 0111 4.07V6h2V4.07A8.001 8.001 0 0119.93 11H18v2h1.93A8.001 8.001 0 0113 19.93z"/></svg>
+          </div>
+          <h3>Radiologi &amp; Imaging</h3>
+          <p>Fasilitas X-Ray, USG, CT-Scan, dan Mammografi dengan hasil cepat dan akurat untuk menunjang diagnosis medis komprehensif.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.34C18 2.99 16.54 2 15 2c-.88 0-1.69.39-2.27.99L12 3.71l-.73-.72C10.69 2.39 9.88 2 9 2 7.46 2 6 2.99 6 4.66c0 .46.11.9.18 1.34H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5-2c.55 0 1 .45 1 1.34C16 6.08 14.96 7 12 7.96 9.04 7 8 6.08 8 5.34 8 4.45 8.45 4 9 4c.55 0 1.02.21 1.38.57L12 6.19l1.62-1.62C13.98 4.21 14.45 4 15 4z"/></svg>
+          </div>
+          <h3>Donor Darah &amp; Bank Darah</h3>
+          <p>Layanan donor darah rutin bekerja sama dengan PMI. Stok darah tersedia real-time. Kegiatan donor sosial diselenggarakan setiap bulan.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          </div>
+          <h3>MCU Haji &amp; Umrah</h3>
+          <p>Pemeriksaan Medical Check-Up khusus Jemaah Haji dan Umrah sesuai standar Kementerian Kesehatan RI. Terintegrasi dengan Siskohatkes.</p>
+        </article>
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17.5 12c-1.93 0-3.5 1.57-3.5 3.5S15.57 19 17.5 19s3.5-1.57 3.5-3.5S19.43 12 17.5 12zm1.5 4h-2v-2h2v2zM19 2H5C3.9 2 3 2.9 3 4v16c0 1.1.9 2 2 2h5.95c-.95-1.26-1.53-2.81-1.53-4.5C9.42 13.03 13.15 9.5 17.5 9.5c.96 0 1.87.18 2.72.5H21V4c0-1.1-.9-2-2-2zm-2 9h-5v-2h5v2zm3-4H5V4h14v3z"/></svg>
+          </div>
+          <h3>Farmasi &amp; Apotek</h3>
+          <p>Instalasi farmasi rawat jalan dan rawat inap dengan ketersediaan obat-obatan esensial, formularium nasional, serta layanan konsultasi apoteker.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DONOR DARAH ===== -->
+  <section id="donor-darah" aria-labelledby="donor-heading">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">Donor Darah</span>
+        <h2 id="donor-heading">Donor Darah &amp; Stok Darah</h2>
+        <div class="divider"></div>
+        <p>Bergabunglah dalam gerakan kemanusiaan. Satu kantong darah Anda dapat menyelamatkan tiga nyawa.</p>
+      </div>
+      <div class="donor-layout">
+        <!-- Real-time Blood Stock Widget -->
+        <div class="blood-stock-widget" role="region" aria-label="Widget stok darah real-time">
+          <h3>📊 Stok Darah Real-Time</h3>
+          <p class="bsw-subtitle">Bank Darah RSUD Rengasdengklok</p>
+          <div class="blood-grid" id="blood-grid">
+            <!-- Populated by JS -->
+          </div>
+          <p class="bsw-timestamp" id="blood-timestamp" aria-live="polite"></p>
+        </div>
+
+        <!-- Donor Info & Schedule -->
+        <div class="donor-info">
+          <div class="donor-schedule-card">
+            <h3>📅 Jadwal Kegiatan Donor Darah Rutin</h3>
+            <table class="schedule-table" aria-label="Jadwal donor darah rutin">
+              <thead>
+                <tr><th>Kegiatan</th><th>Waktu</th><th>Lokasi</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Donor Darah Sosial</td>
+                  <td>Setiap Jumat, 08.00–12.00 WIB</td>
+                  <td>Aula RSUD Lt. 1</td>
+                </tr>
+                <tr>
+                  <td>Donor Darah Sukarela</td>
+                  <td>Senin – Kamis, 09.00–14.00 WIB</td>
+                  <td>Unit Transfusi Darah</td>
+                </tr>
+                <tr>
+                  <td>Donor Rutin PMI</td>
+                  <td>Sabtu ke-3, 08.00–11.00 WIB</td>
+                  <td>Halaman RSUD</td>
+                </tr>
+                <tr>
+                  <td>Donor Korporat</td>
+                  <td>Sesuai perjanjian korporasi</td>
+                  <td>Hubungi Humas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="donate-cta">
+            <h3>💉 Siap Menjadi Pendonor?</h3>
+            <p>Usia 17–60 tahun, berat badan minimal 45 kg, dan dalam kondisi sehat. Daftarkan diri Anda sekarang atau kunjungi langsung Unit Transfusi Darah kami.</p>
+            <a href="tel:+628119876543" class="btn-white">Hubungi Kami</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MCU HAJI ===== -->
+  <section id="mcu-haji" aria-labelledby="mcu-heading">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">MCU Haji</span>
+        <h2 id="mcu-heading">Pemeriksaan MCU Jemaah Haji</h2>
+        <div class="divider"></div>
+        <p>Layanan Medical Check-Up khusus calon Jemaah Haji terintegrasi dengan Siskohatkes Kemenkes RI, sesuai Permenkes No. 15 Tahun 2016.</p>
+      </div>
+
+      <div class="mcu-hero" aria-label="Informasi resmi MCU Haji">
+        <div class="mcu-hero-text">
+          <h3>🕌 MCU Haji — Standar Kementerian Kesehatan RI</h3>
+          <p>Pemeriksaan kesehatan bagi calon Jemaah Haji wajib dilakukan di fasilitas kesehatan yang telah ditetapkan oleh pemerintah. RSUD Rengasdengklok merupakan salah satu faskes resmi MCU Haji di Kabupaten Karawang yang terintegrasi langsung dengan sistem informasi Siskohatkes.</p>
+        </div>
+        <div class="mcu-reg-badge" aria-label="Nomor registrasi resmi">
+          <div class="reg-label">No. Registrasi Resmi (2026)</div>
+          <div class="reg-num" id="reg-number">REG-RSUD-RDK/2026/41352</div>
+        </div>
+      </div>
+
+      <div class="mcu-columns">
+        <div class="mcu-card">
+          <h4>
+            <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+            Alur Pendaftaran MCU Haji
+          </h4>
+          <div class="step-list">
+            <div class="step-item">
+              <div class="step-num" aria-label="Langkah 1">1</div>
+              <div class="step-text"><strong>Pendaftaran:</strong> Daftar melalui website ini atau langsung ke loket pendaftaran MCU Haji (Lantai 1, Gedung Poliklinik).</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num" aria-label="Langkah 2">2</div>
+              <div class="step-text"><strong>Verifikasi Dokumen:</strong> Petugas memverifikasi kelengkapan dokumen dan status BPIH calon jemaah.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num" aria-label="Langkah 3">3</div>
+              <div class="step-text"><strong>Pemeriksaan Fisik:</strong> Dokter melakukan anamnesis riwayat penyakit, pemeriksaan fisik lengkap, pengukuran TB/BB/TD.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num" aria-label="Langkah 4">4</div>
+              <div class="step-text"><strong>Pemeriksaan Laboratorium:</strong> Darah lengkap, gula darah, fungsi ginjal, EKG, Foto Toraks, dan tes lainnya sesuai indikasi.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num" aria-label="Langkah 5">5</div>
+              <div class="step-text"><strong>Penetapan Istithaah:</strong> Dokter menetapkan status kesehatan (Istithaah, Istithaah bersyarat, atau Tidak Istithaah) dan menginput ke Siskohatkes.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num" aria-label="Langkah 6">6</div>
+              <div class="step-text"><strong>Buku Kesehatan:</strong> Calon jemaah menerima Buku Kesehatan Jemaah Haji (BKJH) yang telah terisi lengkap.</div>
+            </div>
+          </div>
+        </div>
+        <div class="mcu-card">
+          <h4>
+            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            Persyaratan Dokumen
+          </h4>
+          <ul class="doc-list" aria-label="Daftar persyaratan dokumen MCU Haji">
+            <li>Kartu Tanda Penduduk (KTP) asli + fotokopi</li>
+            <li>Kartu BPIH (Bukti Setoran Awal) / SPPH dari Kemenag</li>
+            <li>Pas foto terbaru ukuran 3×4 (2 lembar)</li>
+            <li>Kartu BPJS Kesehatan (bagi yang memiliki)</li>
+            <li>Buku Kesehatan Jemaah Haji (BKJH) dari Kemenag</li>
+            <li>Riwayat penyakit / resume medis (jika ada)</li>
+            <li>Hasil pemeriksaan laboratorium sebelumnya (jika ada)</li>
+          </ul>
+          <div class="mcu-note">
+            <strong>📋 Jam Layanan MCU Haji:</strong><br/>
+            Senin – Jumat: 08.00 – 14.00 WIB<br/>
+            Sabtu: 08.00 – 11.00 WIB (khusus musim haji)<br/>
+            <br/>
+            <strong>Biaya:</strong> Pemeriksaan MCU Haji mengacu pada Peraturan Daerah Kabupaten Karawang tentang tarif layanan RSUD. Dapat menggunakan kartu BPJS Kesehatan.<br/>
+            <br/>
+            <strong>Informasi:</strong> Hubungi Poliklinik MCU di Ext. 204 atau WA <a href="https://wa.me/628119876543" style="color:var(--teal)">+62 811-9876-5432</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JADWAL DOKTER ===== -->
+  <section id="jadwal-dokter" aria-labelledby="jadwal-heading">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">Jadwal Dokter</span>
+        <h2 id="jadwal-heading">Jadwal Dokter Spesialis</h2>
+        <div class="divider"></div>
+        <p>Cari jadwal praktik dokter spesialis berdasarkan hari atau poliklinik yang Anda butuhkan.</p>
+      </div>
+
+      <div class="jadwal-filter" role="search" aria-label="Filter jadwal dokter">
+        <div class="filter-group">
+          <label for="filter-hari">Hari</label>
+          <select id="filter-hari" name="filter-hari" aria-label="Pilih hari">
+            <option value="">— Semua Hari —</option>
+            <option>Senin</option>
+            <option>Selasa</option>
+            <option>Rabu</option>
+            <option>Kamis</option>
+            <option>Jumat</option>
+            <option>Sabtu</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filter-poli">Poliklinik</label>
+          <select id="filter-poli" name="filter-poli" aria-label="Pilih poliklinik">
+            <option value="">— Semua Poli —</option>
+            <option>Penyakit Dalam</option>
+            <option>Anak</option>
+            <option>Bedah</option>
+            <option>Kandungan &amp; Kebidanan</option>
+            <option>Jantung &amp; Pembuluh Darah</option>
+            <option>Ortopedi</option>
+            <option>Mata</option>
+            <option>THT</option>
+            <option>Saraf</option>
+            <option>Kulit &amp; Kelamin</option>
+            <option>Urologi</option>
+            <option>Paru</option>
+          </select>
+        </div>
+        <button class="btn-search" id="btn-cari-jadwal" onclick="cariJadwal()" aria-label="Cari jadwal dokter">
+          🔍 Cari Jadwal
+        </button>
+      </div>
+
+      <div id="jadwal-result" aria-live="polite" aria-label="Hasil pencarian jadwal dokter">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PENDAFTARAN ONLINE ===== -->
+  <section id="pendaftaran" aria-labelledby="reg-heading">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">Pendaftaran Online</span>
+        <h2 id="reg-heading">Booking Konsultasi Poliklinik</h2>
+        <div class="divider"></div>
+        <p>Daftarkan jadwal kunjungan Anda secara online. Konfirmasi akan dikirimkan melalui nomor telepon yang Anda daftarkan.</p>
+      </div>
+
+      <div class="reg-layout">
+        <!-- Info sidebar -->
+        <div class="reg-info">
+          <div class="reg-info-card">
+            <h4>ℹ️ Cara Pendaftaran Online</h4>
+            <ul>
+              <li>Isi formulir dengan data yang valid dan lengkap.</li>
+              <li>Pilih poliklinik dan tanggal kunjungan yang diinginkan.</li>
+              <li>Konfirmasi via WhatsApp akan dikirim dalam 1×24 jam.</li>
+              <li>Tunjukkan nomor booking kepada petugas loket saat tiba.</li>
+              <li>Hadir 30 menit sebelum jadwal yang ditentukan.</li>
+            </ul>
+          </div>
+          <div class="reg-info-card">
+            <h4>🕐 Jam Pendaftaran Poliklinik</h4>
+            <ul>
+              <li>Senin – Kamis: 07.30 – 12.00 WIB</li>
+              <li>Jumat: 07.30 – 11.00 WIB</li>
+              <li>Sabtu: 07.30 – 11.00 WIB (beberapa poli)</li>
+              <li>IGD: 24 jam non-stop</li>
+            </ul>
+          </div>
+          <div class="reg-info-card" style="border-left-color: var(--amber);">
+            <h4>⚠️ Catatan Penting</h4>
+            <ul>
+              <li>Pendaftaran online untuk kunjungan <strong>non-darurat</strong> saja.</li>
+              <li>Kasus gawat darurat langsung ke IGD tanpa antrian.</li>
+              <li>Bawa KTP/KK dan kartu BPJS saat kunjungan.</li>
+              <li>Pembatalan min. 1 hari sebelum jadwal kunjungan.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="reg-form-card">
+          <h3>📋 Formulir Pendaftaran Poliklinik</h3>
+          <form id="reg-form" novalidate aria-label="Formulir pendaftaran online poliklinik">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="nama">Nama Lengkap <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="nama" name="nama" placeholder="Nama sesuai KTP" autocomplete="name" required aria-required="true" />
+                <span class="form-error-msg" id="err-nama">Nama lengkap wajib diisi.</span>
+              </div>
+              <div class="form-group">
+                <label for="no-hp">Nomor HP / WhatsApp <span class="req" aria-hidden="true">*</span></label>
+                <input type="tel" id="no-hp" name="no-hp" placeholder="08xxxxxxxxxx" autocomplete="tel" required aria-required="true" />
+                <span class="form-error-msg" id="err-hp">Nomor HP wajib diisi (min. 10 digit).</span>
+              </div>
+              <div class="form-group">
+                <label for="tgl-lahir">Tanggal Lahir <span class="req" aria-hidden="true">*</span></label>
+                <input type="date" id="tgl-lahir" name="tgl-lahir" required aria-required="true" />
+                <span class="form-error-msg" id="err-tgl">Tanggal lahir wajib diisi.</span>
+              </div>
+              <div class="form-group">
+                <label for="jenis-kelamin">Jenis Kelamin <span class="req" aria-hidden="true">*</span></label>
+                <select id="jenis-kelamin" name="jenis-kelamin" required aria-required="true">
+                  <option value="">— Pilih —</option>
+                  <option>Laki-laki</option>
+                  <option>Perempuan</option>
+                </select>
+                <span class="form-error-msg" id="err-jk">Jenis kelamin wajib dipilih.</span>
+              </div>
+              <div class="form-group">
+                <label for="poli-tujuan">Poliklinik Tujuan <span class="req" aria-hidden="true">*</span></label>
+                <select id="poli-tujuan" name="poli-tujuan" required aria-required="true">
+                  <option value="">— Pilih Poli —</option>
+                  <option>Penyakit Dalam</option>
+                  <option>Anak</option>
+                  <option>Bedah</option>
+                  <option>Kandungan &amp; Kebidanan</option>
+                  <option>Jantung &amp; Pembuluh Darah</option>
+                  <option>Ortopedi</option>
+                  <option>Mata</option>
+                  <option>THT</option>
+                  <option>Saraf</option>
+                  <option>Kulit &amp; Kelamin</option>
+                  <option>Urologi</option>
+                  <option>Paru</option>
+                </select>
+                <span class="form-error-msg" id="err-poli">Poliklinik tujuan wajib dipilih.</span>
+              </div>
+              <div class="form-group">
+                <label for="tgl-kunjungan">Tanggal Kunjungan <span class="req" aria-hidden="true">*</span></label>
+                <input type="date" id="tgl-kunjungan" name="tgl-kunjungan" required aria-required="true" />
+                <span class="form-error-msg" id="err-kunjungan">Tanggal kunjungan wajib diisi.</span>
+              </div>
+              <div class="form-group">
+                <label for="jaminan">Jenis Jaminan <span class="req" aria-hidden="true">*</span></label>
+                <select id="jaminan" name="jaminan" required aria-required="true">
+                  <option value="">— Pilih —</option>
+                  <option>BPJS Kesehatan</option>
+                  <option>Umum / Mandiri</option>
+                  <option>Asuransi Swasta</option>
+                  <option>BPJS Ketenagakerjaan</option>
+                </select>
+                <span class="form-error-msg" id="err-jaminan">Jenis jaminan wajib dipilih.</span>
+              </div>
+              <div class="form-group full">
+                <label for="keluhan">Keluhan Utama <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="keluhan" name="keluhan" placeholder="Deskripsikan keluhan utama Anda secara singkat (mis: demam 3 hari, sakit kepala)" rows="3" required aria-required="true" maxlength="500"></textarea>
+                <span class="form-error-msg" id="err-keluhan">Keluhan utama wajib diisi.</span>
+              </div>
+            </div>
+
+            <div class="privacy-note" role="note" aria-label="Catatan privasi">
+              🔒 <strong>Keamanan &amp; Privasi:</strong> Data yang Anda masukkan hanya digunakan untuk keperluan administrasi pendaftaran poliklinik. Kami <strong>tidak menyimpan</strong> data sensitif medis secara terbuka dan tidak membagikannya kepada pihak ketiga tanpa persetujuan Anda. Sesuai UU No. 27 Tahun 2022 tentang Perlindungan Data Pribadi.
+            </div>
+
+            <button type="submit" class="btn-register" id="btn-register">
+              📨 Kirim Pendaftaran
+            </button>
+
+            <div class="form-success" id="form-success" role="status" aria-live="polite">
+              <h4>✅ Pendaftaran Berhasil Dikirim!</h4>
+              <p>Terima kasih, <strong id="success-name"></strong>. Nomor booking Anda: <strong id="booking-num"></strong><br/>
+              Tim RSUD Rengasdengklok akan menghubungi Anda melalui WhatsApp dalam 1×24 jam untuk konfirmasi jadwal.</p>
+              <p style="margin-top:10px;font-size:0.78rem;color:#4a6b6b;">⚠️ Pendaftaran ini bersifat sementara dan memerlukan konfirmasi dari petugas. Untuk keperluan darurat, segera datang ke IGD.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KONTAK ===== -->
+  <section id="kontak" aria-labelledby="kontak-heading">
+    <div class="kontak-grid">
+      <div class="kontak-card">
+        <h4 id="kontak-heading">Identitas Rumah Sakit</h4>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>Jl. Raya Rengasdengklok, Kecamatan Rengasdengklok, Kabupaten Karawang, Jawa Barat 41352</span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          <span><a href="tel:+628119876543">+62 811-9876-5432</a></span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span><a href="mailto:layanan@rsudrengasdengklok.karawangkab.go.id">layanan@rsudrengasdengklok.karawangkab.go.id</a></span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+          <span><a href="https://rsudrengasdengklok.karawangkab.go.id" target="_blank" rel="noopener">rsudrengasdengklok.karawangkab.go.id</a></span>
+        </div>
+      </div>
+
+      <div class="kontak-card kontak-hours">
+        <h4>Jam Operasional</h4>
+        <p><strong>IGD &amp; Rawat Inap:</strong> 24 Jam / 7 Hari</p>
+        <p><strong>Poliklinik:</strong> Senin–Jumat 07.30–14.00 WIB</p>
+        <p><strong>Sabtu:</strong> 07.30–11.00 WIB (terbatas)</p>
+        <p><strong>Laboratorium:</strong> 07.00–20.00 WIB</p>
+        <p><strong>Farmasi/Apotek:</strong> 07.00–21.00 WIB</p>
+        <p><strong>Administrasi:</strong> Senin–Jumat 08.00–15.00 WIB</p>
+      </div>
+
+      <div class="kontak-card">
+        <h4>Layanan Darurat</h4>
+        <div class="emergency-box">
+          <p>Hotline IGD 24 Jam</p>
+          <a href="tel:+628119876543">+62 811-9876-5432</a>
+        </div>
+        <div style="margin-top:14px;font-size:0.82rem;color:rgba(255,255,255,0.65);">
+          <p style="margin-bottom:6px;">No. Registrasi Faskes:</p>
+          <p style="color:rgba(255,255,255,0.9);font-weight:700;">REG-RSUD-RDK/2026/41352</p>
+        </div>
+      </div>
+
+      <div class="kontak-card">
+        <h4>Tautan Cepat</h4>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span><a href="#beranda">Halaman Utama</a></span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+          <span><a href="#jadwal-dokter">Jadwal Dokter</a></span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+          <span><a href="#donor-darah">Donor Darah</a></span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          <span><a href="#mcu-haji">MCU Haji</a></span>
+        </div>
+        <div class="kontak-item">
+          <svg viewBox="0 0 24 24"><path d="M19 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 18H6V4h12v16z"/></svg>
+          <span><a href="#pendaftaran">Pendaftaran Online</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer role="contentinfo">
+  <p>© 2026 <strong style="color:rgba(255,255,255,0.8)">RSUD Rengasdengklok</strong> — Kabupaten Karawang, Jawa Barat</p>
+  <p>
+    <a href="https://rsudrengasdengklok.karawangkab.go.id" target="_blank" rel="noopener">rsudrengasdengklok.karawangkab.go.id</a>
+    &nbsp;|&nbsp;
+    <a href="mailto:layanan@rsudrengasdengklok.karawangkab.go.id">layanan@rsudrengasdengklok.karawangkab.go.id</a>
+    &nbsp;|&nbsp;
+    <a href="tel:+628119876543">+62 811-9876-5432</a>
+  </p>
+  <p class="reg-line">No. Registrasi Resmi: REG-RSUD-RDK/2026/41352 &nbsp;|&nbsp; Dibangun dengan teknologi web standar — tanpa framework eksternal</p>
+  <p style="margin-top:8px;font-size:0.7rem;opacity:0.4;">Informasi pada website ini bersifat informatif. Selalu konsultasikan kondisi kesehatan Anda dengan tenaga medis profesional.</p>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTop" aria-label="Kembali ke atas halaman" title="Kembali ke atas">↑</button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  'use strict';
+
+  /* ===================================================
+     1. HAMBURGER MENU (Mobile Navigation)
+  =================================================== */
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen.toString());
+  });
+
+  // Close mobile nav when a link is clicked
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ===================================================
+     2. ACTIVE NAV LINK (Scroll Spy)
+  =================================================== */
+  const navLinks = document.querySelectorAll('header nav a');
+  const sections = document.querySelectorAll('main section[id]');
+
+  const observerOpts = { rootMargin: '-30% 0px -60% 0px' };
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, observerOpts);
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  /* ===================================================
+     3. SCROLL TO TOP BUTTON
+  =================================================== */
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ===================================================
+     4. BLOOD STOCK WIDGET
+  =================================================== */
+  // Sample data — in production this would come from an API endpoint
+  const bloodStockData = [
+    { type: 'A',  units: 47, label: 'Golongan A',  status: 'aman' },
+    { type: 'B',  units: 23, label: 'Golongan B',  status: 'menipis' },
+    { type: 'AB', units: 12, label: 'Golongan AB', status: 'menipis' },
+    { type: 'O',  units: 68, label: 'Golongan O',  status: 'aman' },
+  ];
+
+  function getStatusLabel(status) {
+    const map = { aman: '✅ Aman', menipis: '⚠️ Menipis', kritis: '🔴 Kritis' };
+    return map[status] || status;
+  }
+
+  function renderBloodStock() {
+    const grid = document.getElementById('blood-grid');
+    const ts   = document.getElementById('blood-timestamp');
+    if (!grid) return;
+
+    grid.innerHTML = bloodStockData.map(d => `
+      <div class="blood-card" role="status" aria-label="${d.label}: ${d.units} kantong, status ${d.status}">
+        <div class="blood-type">${d.type}</div>
+        <div class="blood-label">${d.label}</div>
+        <div class="blood-units">${d.units} Kantong</div>
+        <span class="blood-status status-${d.status}">${getStatusLabel(d.status)}</span>
+      </div>
+    `).join('');
+
+    const now = new Date();
+    ts.textContent = 'Diperbarui: ' + now.toLocaleDateString('id-ID', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    }) + ', ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+  }
+
+  renderBloodStock();
+
+  /* ===================================================
+     5. DOCTOR SCHEDULE DATA & SEARCH
+  =================================================== */
+  const jadwalData = [
+    { nama: 'dr. Budi Santoso, Sp.PD', poli: 'Penyakit Dalam', hari: 'Senin',   jam: '08.00–12.00' },
+    { nama: 'dr. Siti Rahayu, Sp.PD',  poli: 'Penyakit Dalam', hari: 'Rabu',    jam: '13.00–17.00' },
+    { nama: 'dr. Andi Pratama, Sp.PD', poli: 'Penyakit Dalam', hari: 'Jumat',   jam: '08.00–12.00' },
+    { nama: 'dr. Rina Kusuma, Sp.A',   poli: 'Anak',           hari: 'Senin',   jam: '08.00–12.00' },
+    { nama: 'dr. Hendra Wijaya, Sp.A', poli: 'Anak',           hari: 'Selasa',  jam: '13.00–17.00' },
+    { nama: 'dr. Maya Sari, Sp.A',     poli: 'Anak',           hari: 'Kamis',   jam: '08.00–12.00' },
+    { nama: 'dr. Agus Salim, Sp.B',    poli: 'Bedah',          hari: 'Selasa',  jam: '08.00–12.00' },
+    { nama: 'dr. Dewi Lestari, Sp.B',  poli: 'Bedah',          hari: 'Kamis',   jam: '13.00–17.00' },
+    { nama: 'dr. Fitri Handayani, Sp.OG', poli: 'Kandungan & Kebidanan', hari: 'Senin', jam: '08.00–14.00' },
+    { nama: 'dr. Yunita Permata, Sp.OG', poli: 'Kandungan & Kebidanan', hari: 'Rabu',  jam: '08.00–14.00' },
+    { nama: 'dr. Wahyu Nugroho, Sp.JP', poli: 'Jantung & Pembuluh Darah', hari: 'Selasa', jam: '09.00–13.00' },
+    { nama: 'dr. Reza Mahendra, Sp.JP', poli: 'Jantung & Pembuluh Darah', hari: 'Kamis',  jam: '09.00–13.00' },
+    { nama: 'dr. Iwan Hartono, Sp.OT', poli: 'Ortopedi',       hari: 'Rabu',    jam: '08.00–12.00' },
+    { nama: 'dr. Lisa Octavia, Sp.M',  poli: 'Mata',           hari: 'Senin',   jam: '13.00–17.00' },
+    { nama: 'dr. Doni Setiawan, Sp.M', poli: 'Mata',           hari: 'Jumat',   jam: '08.00–12.00' },
+    { nama: 'dr. Nina Kurniawati, Sp.THT', poli: 'THT',        hari: 'Selasa',  jam: '08.00–12.00' },
+    { nama: 'dr. Bagas Wicaksono, Sp.THT', poli: 'THT',        hari: 'Jumat',   jam: '13.00–17.00' },
+    { nama: 'dr. Putri Handayani, Sp.N', poli: 'Saraf',        hari: 'Rabu',    jam: '08.00–13.00' },
+    { nama: 'dr. Rizal Hakim, Sp.KK',  poli: 'Kulit & Kelamin', hari: 'Selasa', jam: '13.00–17.00' },
+    { nama: 'dr. Andri Susanto, Sp.U', poli: 'Urologi',        hari: 'Kamis',   jam: '08.00–12.00' },
+    { nama: 'dr. Citra Dewi, Sp.P',    poli: 'Paru',           hari: 'Senin',   jam: '08.00–12.00' },
+    { nama: 'dr. Eko Prasetyo, Sp.P',  poli: 'Paru',           hari: 'Rabu',    jam: '13.00–17.00' },
+    { nama: 'dr. Sari Wulandari, Sp.OG', poli: 'Kandungan & Kebidanan', hari: 'Sabtu', jam: '08.00–11.00' },
+    { nama: 'dr. Dian Permana, Sp.B',  poli: 'Bedah',          hari: 'Sabtu',   jam: '08.00–11.00' },
+  ];
+
+  function cariJadwal() {
+    const hari = document.getElementById('filter-hari').value.trim();
+    const poli = document.getElementById('filter-poli').value.trim();
+    const result = document.getElementById('jadwal-result');
+
+    let filtered = jadwalData;
+    if (hari) filtered = filtered.filter(d => d.hari === hari);
+    if (poli) filtered = filtered.filter(d => d.poli === poli);
+
+    if (filtered.length === 0) {
+      result.innerHTML = `
+        <div class="empty-state" role="status">
+          <svg viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <p>Tidak ada jadwal dokter yang ditemukan untuk filter yang dipilih.</p>
+          <p style="font-size:0.8rem;margin-top:6px;">Coba pilih hari atau poliklinik lain, atau <button onclick="resetFilter()" style="color:var(--teal);background:none;border:none;cursor:pointer;font-size:0.8rem;padding:0;text-decoration:underline;">tampilkan semua jadwal</button>.</p>
+        </div>`;
+      return;
+    }
+
+    result.innerHTML = `
+      <table class="jadwal-table" aria-label="Jadwal dokter spesialis">
+        <thead>
+          <tr>
+            <th>Nama Dokter</th>
+            <th>Spesialisasi / Poli</th>
+            <th>Hari Praktik</th>
+            <th>Jam Praktik</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${filtered.map(d => `
+            <tr>
+              <td>${d.nama}</td>
+              <td><span class="poli-badge">${d.poli}</span></td>
+              <td>${d.hari}</td>
+              <td>${d.jam}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+      <p style="font-size:0.78rem;color:var(--gray-600);margin-top:10px;">Menampilkan ${filtered.length} jadwal. Jadwal dapat berubah sewaktu-waktu — konfirmasi ke loket atau hubungi kami.</p>
+    `;
+  }
+
+  function resetFilter() {
+    document.getElementById('filter-hari').value = '';
+    document.getElementById('filter-poli').value = '';
+    cariJadwal();
+  }
+
+  // Load all schedules on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    cariJadwal();
+    setMinDateForBooking();
+  });
+
+  // Allow pressing Enter in filter selects
+  ['filter-hari', 'filter-poli'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') cariJadwal();
+    });
+  });
+
+  /* ===================================================
+     6. SET MIN DATE FOR BOOKING FORM
+  =================================================== */
+  function setMinDateForBooking() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const minDate = tomorrow.toISOString().split('T')[0];
+    const kunjunganInput = document.getElementById('tgl-kunjungan');
+    if (kunjunganInput) kunjunganInput.min = minDate;
+
+    // Max birth date = today (can't be born in the future)
+    const today = new Date().toISOString().split('T')[0];
+    const tglLahirInput = document.getElementById('tgl-lahir');
+    if (tglLahirInput) {
+      tglLahirInput.max = today;
+    }
+  }
+
+  /* ===================================================
+     7. REGISTRATION FORM — Validation & Submission
+  =================================================== */
+  const regForm = document.getElementById('reg-form');
+
+  function showError(fieldId, errId, show) {
+    const field = document.getElementById(fieldId);
+    const err   = document.getElementById(errId);
+    if (!field || !err) return;
+    field.classList.toggle('error', show);
+    err.classList.toggle('visible', show);
+    if (show) field.setAttribute('aria-invalid', 'true');
+    else field.removeAttribute('aria-invalid');
+  }
+
+  function validateForm() {
+    let valid = true;
+
+    const nama = document.getElementById('nama').value.trim();
+    if (!nama || nama.length < 3) { showError('nama', 'err-nama', true); valid = false; }
+    else showError('nama', 'err-nama', false);
+
+    const hp = document.getElementById('no-hp').value.trim().replace(/\s/g, '');
+    if (!hp || hp.length < 10 || !/^\+?[\d\-]+$/.test(hp)) { showError('no-hp', 'err-hp', true); valid = false; }
+    else showError('no-hp', 'err-hp', false);
+
+    const tglLahir = document.getElementById('tgl-lahir').value;
+    if (!tglLahir) { showError('tgl-lahir', 'err-tgl', true); valid = false; }
+    else showError('tgl-lahir', 'err-tgl', false);
+
+    const jk = document.getElementById('jenis-kelamin').value;
+    if (!jk) { showError('jenis-kelamin', 'err-jk', true); valid = false; }
+    else showError('jenis-kelamin', 'err-jk', false);
+
+    const poli = document.getElementById('poli-tujuan').value;
+    if (!poli) { showError('poli-tujuan', 'err-poli', true); valid = false; }
+    else showError('poli-tujuan', 'err-poli', false);
+
+    const tglKunjungan = document.getElementById('tgl-kunjungan').value;
+    if (!tglKunjungan) { showError('tgl-kunjungan', 'err-kunjungan', true); valid = false; }
+    else {
+      const kDate = new Date(tglKunjungan);
+      const today = new Date(); today.setHours(0,0,0,0);
+      if (kDate <= today) { showError('tgl-kunjungan', 'err-kunjungan', true); valid = false; }
+      else showError('tgl-kunjungan', 'err-kunjungan', false);
+    }
+
+    const jaminan = document.getElementById('jaminan').value;
+    if (!jaminan) { showError('jaminan', 'err-jaminan', true); valid = false; }
+    else showError('jaminan', 'err-jaminan', false);
+
+    const keluhan = document.getElementById('keluhan').value.trim();
+    if (!keluhan || keluhan.length < 10) { showError('keluhan', 'err-keluhan', true); valid = false; }
+    else showError('keluhan', 'err-keluhan', false);
+
+    return valid;
+  }
+
+  function generateBookingNumber() {
+    const now   = new Date();
+    const ymd   = now.getFullYear().toString() +
+                  String(now.getMonth()+1).padStart(2,'0') +
+                  String(now.getDate()).padStart(2,'0');
+    const rand  = Math.floor(1000 + Math.random() * 9000);
+    return 'BK-RDK-' + ymd + '-' + rand;
+  }
+
+  // Real-time error clearing
+  ['nama','no-hp','tgl-lahir','jenis-kelamin','poli-tujuan','tgl-kunjungan','jaminan','keluhan'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input',  () => el.classList.remove('error'));
+    el.addEventListener('change', () => el.classList.remove('error'));
+  });
+
+  regForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btn-register');
+    btn.disabled = true;
+
+    if (!validateForm()) {
+      btn.disabled = false;
+      // Scroll to first error
+      const firstErr = regForm.querySelector('.error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Simulate async submission
+    btn.textContent = '⏳ Memproses...';
+
+    setTimeout(() => {
+      const nama    = document.getElementById('nama').value.trim();
+      const bookNum = generateBookingNumber();
+
+      document.getElementById('success-name').textContent = nama;
+      document.getElementById('booking-num').textContent  = bookNum;
+
+      const successBox = document.getElementById('form-success');
+      successBox.classList.add('visible');
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      regForm.reset();
+      btn.textContent = '✅ Terkirim';
+      btn.style.background = 'var(--green)';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = '📨 Kirim Pendaftaran';
+        btn.style.background = '';
+      }, 5000);
+    }, 900);
+  });
+
+  /* ===================================================
+     8. SMOOTH ANCHOR SCROLL (offset for sticky header)
+  =================================================== */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const headerH = document.querySelector('header').offsetHeight + 8;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerH;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
